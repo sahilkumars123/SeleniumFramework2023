@@ -501,14 +501,16 @@ public class ElementUtil {
 
 	public void waitForElementAndEnterValue(By locator, int timeOut, int pollingTime, String value) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
-		wait.pollingEvery(Duration.ofSeconds(pollingTime)).ignoring(NoSuchElementException.class)
+		wait.pollingEvery(Duration.ofSeconds(pollingTime))
+        .ignoring(NoSuchElementException.class)
 				.withMessage("----time out is done...element is not found..." + locator)
 				.until(ExpectedConditions.presenceOfElementLocated(locator)).sendKeys(value);
 	}
 
 	public void waitForElementAndClick(By locator, int timeOut, int pollingTime) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
-		wait.pollingEvery(Duration.ofSeconds(pollingTime)).ignoring(NoSuchElementException.class)
+		wait.pollingEvery(Duration.ofSeconds(pollingTime))
+        .ignoring(NoSuchElementException.class)
 				.withMessage("----time out is done...element is not found..." + locator)
 				.until(ExpectedConditions.presenceOfElementLocated(locator)).click();
 	}
@@ -541,38 +543,6 @@ public class ElementUtil {
 		if (element == null) {
 			System.out.println("element is not found....tried for " + timeOut + " secs " + " with the interval of "
 					+ 500 + " milli secs");
-		}
-
-		return element;
-
-	}
-
-	public WebElement retryingElement(By locator, int timeOut, long pollingTime) {
-
-		WebElement element = null;
-		int attempts = 0;
-
-		while (attempts < timeOut) {// 10
-			try {
-				element = getElement(locator);
-				System.out.println("element is found...." + locator + " in attempt " + attempts);
-				break;
-
-			} catch (NoSuchElementException e) {
-				System.out.println("element is not found...." + locator + " in attempt " + attempts);
-				try {
-					Thread.sleep(pollingTime);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-			}
-			attempts++;
-
-		}
-
-		if (element == null) {
-			System.out.println("element is not found....tried for " + timeOut + " secs " + " with the interval of "
-					+ pollingTime + " mill secs");
 		}
 
 		return element;

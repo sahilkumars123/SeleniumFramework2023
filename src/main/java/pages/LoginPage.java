@@ -22,13 +22,7 @@ public class LoginPage {
 		this.driver = driver;
 		eleUtil = new ElementUtil(driver);
 	}
-	
-	
-	//getLoginPageTitle
-	//getLoginPageURL
-	//isForgotPwdLinkExist
-	//doLogin
-	
+
 	public String getLoginPageTitle() {
 		
 		 String title = eleUtil.waitForTitleIs(AppConstants.LOGIN_PAGE_TITLE_VALUE,AppConstants.MEDIUM_DEFAULT_WAIT);
@@ -44,22 +38,19 @@ public class LoginPage {
 	}
 	public boolean isForgotPwdLinkExist() {
 		
-		return eleUtil.waitForElementVisible(forgotPwdLink, 10).isDisplayed();
+		return eleUtil.waitForElementVisible(forgotPwdLink, AppConstants.MEDIUM_DEFAULT_WAIT).isDisplayed();
 		
 	}
-	public String doLogin(String username, String pwd) {
+	public AccountsPage doLogin(String username, String pwd) {
 		
-		eleUtil.waitForElementVisible(email, 10).sendKeys(username);
+		eleUtil.waitForElementVisible(email, AppConstants.MEDIUM_DEFAULT_WAIT).sendKeys(username);
 		eleUtil.doSendKeys(password, pwd);
 		eleUtil.doClick(loginBtn);
 		
-		return eleUtil.waitForTitleIs(AppConstants.ACCOUNTS_PAGE_TITLE_VALUE, AppConstants.MEDIUM_DEFAULT_WAIT);
+		//return eleUtil.waitForTitleIs(AppConstants.ACCOUNTS_PAGE_TITLE_VALUE, AppConstants.MEDIUM_DEFAULT_WAIT);
+    return new AccountsPage(driver);
 		
 		
-	}
-	
-	
-	
-	
+	  }
 
 }
