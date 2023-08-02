@@ -9,25 +9,30 @@ import org.testng.annotations.BeforeTest;
 
 import pages.AccountsPage;
 import pages.LoginPage;
+import pages.ProductInfoPage;
+import pages.SearchResultsPage;
 
 import java.util.Properties;
 
 public class BaseTest {
 	
 	WebDriver driver;
-	protected LoginPage loginpage;
+
+    protected LoginPage loginpage;
   protected AccountsPage accountsPage;
+  protected SearchResultsPage searchResultsPage;
+  protected ProductInfoPage productInfoPage;
   protected DriverFactory driverFactory;
   protected Properties properties;
   protected OptionsManager optionsManager;
 	
 	@BeforeTest
 	public void setup() {
-    System.setProperty("webdriver.chrome.driver", "/Users/sahil.kumar/Documents/drivers/chromedriver");
+    System.setProperty("webdriver.chrome.driver", "D://Softwares//chromedriver_win32 (2)//chromedriver.exe");
     driverFactory = new DriverFactory();
     properties = driverFactory.initProperties();
     driver = driverFactory.initDriver(properties);
-		loginpage = new LoginPage(driver);
+    loginpage = new LoginPage(driver);
 
 	}
 

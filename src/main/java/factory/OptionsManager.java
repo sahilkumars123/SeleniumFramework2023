@@ -16,7 +16,8 @@ public class OptionsManager {
   private Properties properties;
 
 
-  public OptionsManager(Properties properties){
+  public OptionsManager(Properties properties)
+  {
       this.properties = properties;
   }
 

@@ -3,7 +3,9 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utils.AppConstants;
 import utils.ElementUtil;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +13,13 @@ import java.util.List;
 public class AccountsPage {
 
   private WebDriver driver;
-  private ElementUtil elementUtil;
-  private By accHeaders = By.cssSelector("#content h2");
 
+  private ElementUtil elementUtil;
+
+    private By logoutLink = By.linkText("Logout");
+    private By accHeaders = By.cssSelector("div#content h2");
+    private By search = By.name("search");
+    private By searchIcon = By.cssSelector("div#search button");
 
   public  AccountsPage(WebDriver driver){
     this.driver = driver;
@@ -37,4 +43,12 @@ public class AccountsPage {
        }
        return accHeaders;
   }
+
+    public SearchResultsPage doSearch(String searchKey) {
+        WebElement searchField = elementUtil.waitForElementVisible(search, AppConstants.MEDIUM_DEFAULT_WAIT);
+        searchField.clear();
+        searchField.sendKeys(searchKey);
+        elementUtil.doClick(searchIcon);
+        return new SearchResultsPage(driver);//TDD
+    }
 }

@@ -3,7 +3,9 @@ package tests;
 import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pages.SearchResultsPage;
 import utils.AppConstants;
 
 public class AccountsTest extends BaseTest {
@@ -28,4 +30,23 @@ public class AccountsTest extends BaseTest {
   public void checkAccountsPageHeaders(){
     Assert.assertEquals(accountsPage.getAccountHeaders(), AppConstants.EXP_ACCOUNTS_HEADERS_LIST);
   }
+
+  @DataProvider
+  public Object[][] getSearchKey(){
+    return new Object[][]{
+            {"macbook",3},
+            {"imac",1},
+            {"samsung",2}
+    };
+  }
+
+  @Test(priority = 4, dataProvider = "getSearchKey")
+  public void searchTest(String searchKey, int expectedProductCount){
+
+    SearchResultsPage searchPage = accountsPage.doSearch(searchKey);
+    int actualResultsCount = searchPage.getSearchResultsCount();
+    Assert.assertEquals(actualResultsCount,expectedProductCount);
+  }
+
+
 }

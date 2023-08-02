@@ -22,13 +22,13 @@ public class DriverFactory {
 
   /**
    * This is use to intialize the driver
-   * @param browserName
    * @return it returns the driver
    */
   public WebDriver initDriver(Properties properties){
     String browserName = properties.getProperty("browser");
-    optionsManager = new OptionsManager(properties);
     System.out.println("browser name is:: "+browserName);
+    optionsManager = new OptionsManager(properties);
+
 
     switch (browserName.toLowerCase()){
 
@@ -40,6 +40,7 @@ public class DriverFactory {
         break;
       case "edge":
         driver = new EdgeDriver(optionsManager.getEdgeOptions());
+        break;
       case "safari":
         driver = new SafariDriver();
         break;
