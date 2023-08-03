@@ -49,4 +49,9 @@ public class ProductInfoTest extends BaseTest {
           int productImagesCount = productInfoPage.getProductImagesCount();
           Assert.assertEquals(productImagesCount,expectedProductCount);
         }
+
+//        @Test
+//        public void productInfoTest(){
+//
+//        }
 }

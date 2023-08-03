@@ -16,6 +16,8 @@ public class LoginPage {
 	private By password = By.name("password");
 	private By loginBtn = By.xpath("//input[@value='Login']");
 	private By forgotPwdLink = By.linkText("Forgotten Password");
+
+	private By registerLink = By.linkText("Register");
 	
 	
 	public LoginPage(WebDriver driver) {
@@ -48,9 +50,12 @@ public class LoginPage {
 		eleUtil.doClick(loginBtn);
 		
 		//return eleUtil.waitForTitleIs(AppConstants.ACCOUNTS_PAGE_TITLE_VALUE, AppConstants.MEDIUM_DEFAULT_WAIT);
-    return new AccountsPage(driver);
-		
-		
+    return new AccountsPage(driver); //TDD Approach
 	  }
 
+	public RegisterPage clickOnRegisterLink(){
+		eleUtil.doClick(registerLink);
+		return new RegisterPage(driver);
+
+	}
 }
