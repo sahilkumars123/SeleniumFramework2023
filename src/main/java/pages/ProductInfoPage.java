@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import utils.AppConstants;
 import utils.ElementUtil;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProductInfoPage {
 
@@ -78,6 +76,8 @@ public class ProductInfoPage {
 //    Ex Tax: $2,000.00
     public Map<String, String> getProductMasterData(){
         productMap = new HashMap<String, String>();
+        //productMap = new LinkedHashMap<String,String>();   --- for inserting in the order it receives the data.
+        //productMap = new TreeMap<String, String>(); --- for inserting in alphabetical order.
         productMap.put("productHeader",getProductHeaderValue());
         productMap.put("productImagesCount",String.valueOf(getProductImagesCount()));
         getProductMetaData();

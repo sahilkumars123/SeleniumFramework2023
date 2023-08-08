@@ -6,10 +6,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Map;
+
 public class ProductInfoTest extends BaseTest {
 
         @BeforeClass
-        public void productInfoTest(){
+        public void login(){
            accountsPage = loginpage.doLogin(properties.getProperty("username"),properties.getProperty("password"));
         }
 
@@ -50,8 +52,13 @@ public class ProductInfoTest extends BaseTest {
           Assert.assertEquals(productImagesCount,expectedProductCount);
         }
 
-//        @Test
-//        public void productInfoTest(){
-//
-//        }
+       @Test
+        public void productInfoTest(){
+            searchResultsPage = accountsPage.doSearch("macbook");
+            productInfoPage = searchResultsPage.selectProduct("Macbook Pro");
+            Map<String, String> productActualData = productInfoPage.getProductMasterData();
+            System.out.println(productActualData);
+
+
+        }
 }
