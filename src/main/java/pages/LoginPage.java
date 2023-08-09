@@ -53,9 +53,8 @@ public class LoginPage {
     return new AccountsPage(driver); //TDD Approach
 	  }
 
-	public RegisterPage clickOnRegisterLink(){
-		eleUtil.doClick(registerLink);
+	public RegisterPage navigateToRegisterLink(){
+		eleUtil.waitForElementVisible(registerLink,AppConstants.MEDIUM_DEFAULT_WAIT).click();
 		return new RegisterPage(driver);
-
 	}
 }

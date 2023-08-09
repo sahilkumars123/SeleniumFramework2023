@@ -7,10 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
-import pages.AccountsPage;
-import pages.LoginPage;
-import pages.ProductInfoPage;
-import pages.SearchResultsPage;
+import org.testng.asserts.SoftAssert;
+import pages.*;
 
 import java.util.Properties;
 
@@ -25,6 +23,8 @@ public class BaseTest {
   protected DriverFactory driverFactory;
   protected Properties properties;
   protected OptionsManager optionsManager;
+  protected SoftAssert softAssert;
+  protected RegisterPage registerPage;
 	
 	@BeforeTest
 	public void setup() {
@@ -33,6 +33,7 @@ public class BaseTest {
     properties = driverFactory.initProperties();
     driver = driverFactory.initDriver(properties);
     loginpage = new LoginPage(driver);
+    softAssert = new SoftAssert();
 
 	}
 
