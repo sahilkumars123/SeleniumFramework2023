@@ -52,6 +52,8 @@ public class RegisterPage {
        String actualSuccessMsg = elementUtil.waitForElementVisible(successMessg,AppConstants.MEDIUM_DEFAULT_WAIT).getText();
         System.out.println(actualSuccessMsg);
         if(actualSuccessMsg.contains(AppConstants.USER_RESG_SUCCESS_MESSG)){
+            elementUtil.doClick(logoutLink);
+            elementUtil.doClick(registerLink);
             return true;
         }
         return false;
