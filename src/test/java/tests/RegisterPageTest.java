@@ -27,6 +27,6 @@ public class RegisterPageTest extends BaseTest {
 
     @Test(dataProvider = "getUserRegData")
     public void userRegisterTest(String firstName, String lastName, String telephone, String password, String subscribe){
-        Assert.assertTrue(registerPage.doRegister("Naveen","Testing",getRandomEmailId(),"9876778285","naveen@123","yes"));
+        Assert.assertTrue(registerPage.doRegister(firstName,lastName,getRandomEmailId(),telephone,password, subscribe));
     }
 }
