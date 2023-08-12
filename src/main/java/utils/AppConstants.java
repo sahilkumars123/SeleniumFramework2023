@@ -24,6 +24,7 @@ public class AppConstants {
 	
 	//******************Sheet Names*****************//
 	public static final String REGISTER_SHEET_NAME = "register";
+	public static final String PRODUCT_SHEET_NAME = "product";
 
 
 }

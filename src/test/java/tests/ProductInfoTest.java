@@ -5,6 +5,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utils.AppConstants;
+import utils.ExcelUtil;
 
 import java.util.Map;
 
@@ -44,6 +46,13 @@ public class ProductInfoTest extends BaseTest {
                 {"samsung","Samsung Galaxy Tab 10.1",7},
         };
     }
+
+    @DataProvider
+    public Object[][] productSheetData(){
+       return ExcelUtil.getTestData(AppConstants.PRODUCT_SHEET_NAME);
+    }
+
+
         @Test(dataProvider = "productData")
         public void getProductImagesCount(String searchKey, String productName, int expectedProductCount){
           searchResultsPage = accountsPage.doSearch(searchKey);

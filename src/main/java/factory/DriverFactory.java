@@ -19,6 +19,7 @@ public class DriverFactory {
    WebDriver driver;
    Properties properties;
    OptionsManager optionsManager;
+   public static ThreadLocal<WebDriver> threadLocal = new ThreadLocal<WebDriver>();
 
   /**
    * This is use to intialize the driver
@@ -33,25 +34,33 @@ public class DriverFactory {
     switch (browserName.toLowerCase()){
 
       case "chrome":
-        driver = new ChromeDriver(optionsManager.getChromeOptions());
+        //driver = new ChromeDriver(optionsManager.getChromeOptions());
+        threadLocal.set(new ChromeDriver(optionsManager.getChromeOptions()));
         break;
       case "firefox":
-        driver = new FirefoxDriver(optionsManager.getFirefoxOptions());
+        //driver = new FirefoxDriver(optionsManager.getFirefoxOptions());
+        threadLocal.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
         break;
       case "edge":
-        driver = new EdgeDriver(optionsManager.getEdgeOptions());
+        //driver = new EdgeDriver(optionsManager.getEdgeOptions());
+        threadLocal.set(new EdgeDriver(optionsManager.getEdgeOptions()));
         break;
       case "safari":
-        driver = new SafariDriver();
+        threadLocal.set(new SafariDriver());
+        //driver = new SafariDriver();
         break;
       default:
         System.out.println("please enter correct browser name:: "+browserName);
     }
 
-    driver.manage().window().maximize();
-    driver.manage().deleteAllCookies();
-    driver.get(properties.getProperty("url"));
-    return driver;
+    getDriver().manage().window().maximize();
+    getDriver().manage().deleteAllCookies();
+    getDriver().get(properties.getProperty("url"));
+    return getDriver();
+  }
+
+  public static WebDriver getDriver(){
+    return threadLocal.get();
   }
 
   /**
@@ -60,16 +69,51 @@ public class DriverFactory {
    */
   public Properties initProperties(){
 
+//mvn clean install -Denv="qa"
+
+    FileInputStream ip = null;
     properties = new Properties();
-  try {
-    FileInputStream ip = new FileInputStream("./src/resources/config.properties");
-    properties.load(ip);
-  } catch (FileNotFoundException e) {
-    throw new RuntimeException(e);
-  } catch (IOException e) {
-    throw new RuntimeException(e);
-  }
-  return properties;
+
+    String envName = System.getProperty("env");
+
+    try {
+      if (envName == null) {
+        System.out.println("no env is given ...hence running it on QA env");
+        ip = new FileInputStream("./src/resources/qa.config.properties");
+      } else {
+        System.out.println("environment name is:: "+envName);
+        switch (envName.toLowerCase().trim()) {
+          case "qa":
+            ip = new FileInputStream("./src/resources/qa.config.properties");
+            break;
+          case "dev":
+            ip = new FileInputStream("./src/resources/dev.config.properties");
+            break;
+          case "stage":
+            ip = new FileInputStream("./src/resources/stage.config.properties");
+            break;
+          case "uat":
+            ip = new FileInputStream("./src/resources/uat.config.properties");
+            break;
+          case "prod":
+            ip = new FileInputStream("./src/resources/prod.config.properties");
+            break;
+          default:
+            System.out.println("Please pass the correct envName:: " + envName);
+            break;
+        }
+      }
+    }
+    catch (FileNotFoundException e){
+      e.printStackTrace();
+    }
+    try {
+      properties.load(ip);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    return properties;
 }
 
 }

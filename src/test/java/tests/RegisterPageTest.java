@@ -5,6 +5,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utils.AppConstants;
+import utils.ExcelUtil;
 
 public class RegisterPageTest extends BaseTest {
 
@@ -25,7 +27,12 @@ public class RegisterPageTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "getUserRegData")
+    @DataProvider
+    public Object[][] getUserRegSheetData(){
+       return ExcelUtil.getTestData(AppConstants.REGISTER_SHEET_NAME);
+    }
+
+    @Test(dataProvider = "getUserRegSheetData")
     public void userRegisterTest(String firstName, String lastName, String telephone, String password, String subscribe){
         Assert.assertTrue(registerPage.doRegister(firstName,lastName,getRandomEmailId(),telephone,password, subscribe));
     }
