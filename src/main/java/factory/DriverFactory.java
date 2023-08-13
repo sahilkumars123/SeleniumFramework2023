@@ -60,6 +60,7 @@ public class DriverFactory {
   }
 
   public static WebDriver getDriver(){
+
     return threadLocal.get();
   }
 

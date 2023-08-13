@@ -86,11 +86,11 @@
         <configuration>
           <forkCount>3</forkCount>
           <reuseForks>true</reuseForks>
-            <argLine>
-                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-            </argLine>
+<!--            <argLine>-->
+<!--                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
+<!--            </argLine>-->
           <suiteXmlFiles>
-            <suiteXmlFile>src/test/resources/testrunners/testng_regression.xml</suiteXmlFile>
+            <suiteXmlFile>src/resources/testrunners/testng_regression.xml</suiteXmlFile>
 <!--              <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
           </suiteXmlFiles>
         </configuration>

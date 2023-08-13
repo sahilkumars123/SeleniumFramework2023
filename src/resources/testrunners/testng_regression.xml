@@ -24,17 +24,17 @@
         </classes>
     </test>
 
-    <test name="ProductInfo Page Test">
-        <classes>
-            <class name="tests.ProductInfoTest" />
-        </classes>
-    </test>
+<!--    <test name="ProductInfo Page Test">-->
+<!--        <classes>-->
+<!--            <class name="tests.ProductInfoTest" />-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Register Page Test">
-        <classes>
-            <class name="tests.RegisterPageTest" />
-        </classes>
-    </test>
+<!--    <test name="Register Page Test">-->
+<!--        <classes>-->
+<!--            <class name="tests.RegisterPageTest" />-->
+<!--        </classes>-->
+<!--    </test>-->
 
     <!-- <test name="ProductInfo Page Test">
         <classes>

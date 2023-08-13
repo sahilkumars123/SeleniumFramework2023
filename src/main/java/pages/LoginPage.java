@@ -44,6 +44,7 @@ public class LoginPage {
 		
 	}
 	public AccountsPage doLogin(String username, String pwd) {
+		System.out.println("username :: "+username+" password:: "+pwd);
 		
 		eleUtil.waitForElementVisible(email, AppConstants.MEDIUM_DEFAULT_WAIT).sendKeys(username);
 		eleUtil.doSendKeys(password, pwd);
