@@ -11,15 +11,13 @@ public class LoginPage {
 	
 	private WebDriver driver;
 	private ElementUtil eleUtil;
-	
 	private By email = By.name("email");
 	private By password = By.name("password");
 	private By loginBtn = By.xpath("//input[@value='Login']");
 	private By forgotPwdLink = By.linkText("Forgotten Password");
 
 	private By registerLink = By.linkText("Register");
-	
-	
+
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 		eleUtil = new ElementUtil(driver);
