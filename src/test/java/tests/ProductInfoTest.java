@@ -52,13 +52,12 @@ public class ProductInfoTest extends BaseTest {
        return ExcelUtil.getTestData(AppConstants.PRODUCT_SHEET_NAME);
     }
 
-
-        @Test(dataProvider = "productData")
-        public void getProductImagesCount(String searchKey, String productName, int expectedProductCount){
+        @Test(dataProvider = "productSheetData")
+        public void getProductImagesCount(String searchKey, String productName, String expectedProductCount){
           searchResultsPage = accountsPage.doSearch(searchKey);
           productInfoPage = searchResultsPage.selectProduct(productName);
-          int productImagesCount = productInfoPage.getProductImagesCount();
-          Assert.assertEquals(productImagesCount,expectedProductCount);
+          double productImagesCount = productInfoPage.getProductImagesCount();
+          Assert.assertEquals(productImagesCount,Double.parseDouble(expectedProductCount));
         }
 
         //With Hard Assert it was difficult as if first assert was failing then it was not

@@ -28,7 +28,7 @@ public class BaseTest {
 	
 	@BeforeTest
 	public void setup() {
-    System.setProperty("webdriver.chrome.driver", "D://Softwares//chromedriver_win32 (2)//chromedriver.exe");
+    //System.setProperty("webdriver.chrome.driver", "D://Softwares//chromedriver_win32 (2)//chromedriver.exe");
     driverFactory = new DriverFactory();
     properties = driverFactory.initProperties();
     driver = driverFactory.initDriver(properties);
